@@ -37,9 +37,6 @@ const formatTimestamp = (isoString) => {
     .replace(",", " at");
 };
 
-const timestamp = "2025-03-19T12:03:01.998";
-console.log(formatTimestamp(timestamp)); // Output: "19/03/2025 at 12:03"
-
 const SearchResults = ({ searchResults, query }) => {
   const router = useRouter();
 
@@ -64,8 +61,13 @@ const SearchResults = ({ searchResults, query }) => {
                 <Typography
                   variant="h6"
                   fontWeight="bold"
-                  color="primary"
-                  sx={{ cursor: "pointer" }}
+                  color="#1a11b8"
+                  fontFamily="DM Sans, sans-serif"
+                  fontStyle={"normal"}
+                  sx={{
+                    cursor: "pointer",
+                    "&:hover": { color: "#150e95" },
+                  }}
                 >
                   {result.title}
                 </Typography>

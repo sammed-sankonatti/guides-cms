@@ -56,8 +56,26 @@ const page = async ({ params }) => {
         ]}
       />
 
-      <Box display="flex" p={2}>
-        <Box width="25%">
+      <Box display="flex" p="1rem 3rem">
+        <Box width="75%" display="flex" flexDirection="column">
+          <SearchBody searchContent={searchContent} />
+        </Box>
+        <Box width="25%" ml={"2rem"}>
+          <Box
+            sx={{ display: "flex", justifyContent: "flex-end", p: "1rem 0" }}
+          >
+            <Box sx={{ display: "flex", gap: 1, maxWidth: 400 }}>
+              <TextField
+                fullWidth
+                variant="outlined"
+                placeholder="Search..."
+                size="small"
+              />
+              <Button variant="contained" color="primary">
+                <SearchIcon />
+              </Button>
+            </Box>
+          </Box>
           <Typography variant="p" fontWeight="bold">
             Related Articles
           </Typography>
@@ -68,34 +86,19 @@ const page = async ({ params }) => {
                 href={`/content/${article.id}_${article.slug}`}
                 color="primary"
               >
-                <Typography variant="subtitle1" fontWeight={600}>
+                <Typography
+                  variant="subtitle1"
+                  fontSize={"0.95rem"}
+                  lineHeight={"1.3 !important"}
+                  fontWeight={700}
+                  color="rgba(0, 109, 186, 1)"
+                  my={"0.4rem"}
+                >
                   {article.title}
                 </Typography>
               </Link>
             ))}
           </List>
-        </Box>
-
-        <Box width="55%" display="flex" flexDirection="column">
-          <SearchBody searchContent={searchContent} />
-        </Box>
-        <Box
-          width="25%"
-          sx={{ display: "flex", position: "absolute", right: 1, top: 130 }}
-        >
-          <Box sx={{ display: "flex", justifyContent: "flex-end", p: 2 }}>
-            <Box sx={{ display: "flex", gap: 1, maxWidth: 400 }}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                placeholder="Search..."
-                size="small"
-              />
-              <Button variant="contained" color="primary" sx={{ minWidth: 50 }}>
-                <SearchIcon />
-              </Button>
-            </Box>
-          </Box>
         </Box>
       </Box>
     </Box>
