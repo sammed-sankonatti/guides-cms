@@ -4,7 +4,7 @@ import Typography from "@mui/material/Typography";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { Box } from "@mui/material";
 
-const GuideBreadcrumbs = ({ items }) => {
+const SearchBreadcrumbs = ({ items }) => {
   return (
     <Box
       sx={{
@@ -16,7 +16,7 @@ const GuideBreadcrumbs = ({ items }) => {
     >
       <Breadcrumbs
         aria-label="breadcrumb"
-        separator={<NavigateNextIcon fontSize="small" />}
+        separator=">"
         sx={{
           fontSize: "14px",
           mt: "0.5rem",
@@ -51,4 +51,4 @@ const GuideBreadcrumbs = ({ items }) => {
   );
 };
 
-export default GuideBreadcrumbs;
+export default SearchBreadcrumbs;

@@ -7,7 +7,7 @@ const CategoriesLayout = ({ children }) => {
   return (
     <Box>
       <NavBar />
-      <Box sx={{ mt: 8 }}>
+      <Box sx={{ mt: 10 }}>
         <GuideBreadcrumbs
           items={[
             { label: "DrillBit Guides", href: "/" },

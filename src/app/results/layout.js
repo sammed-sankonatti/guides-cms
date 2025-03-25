@@ -8,8 +8,7 @@ const ResultsLayout = ({ children }) => {
   return (
     <Box>
       <NavBar />
-
-      <Box sx={{ mt: 8, p: 3 }}>
+      <Box sx={{ mt: 6, p: 3 }}>
         <GuideBreadcrumbs
           items={[
             { label: "DrillBit Guides", href: "/" },

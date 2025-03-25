@@ -53,32 +53,66 @@ const page = async ({ params }) => {
   console.log("categoriesWithArticles = ", categoriesWithArticles);
 
   return (
-    <Container sx={{ py: 3, display: "flex", gap: 2 }}>
+    <Box sx={{ px: 6, py: 3, display: "flex" }}>
       <Box>
         <h1>{name.split("-").join(" ")}</h1>
         <Box justifyContent="center" display={"flex"}>
-          {categoriesWithArticles.map((item, index) => (
-            <Box key={index} padding="0 1rem ">
-              <Typography variant="h6" fontWeight="bold">
-                {item.name}
-              </Typography>
-              <List sx={{ display: "flex", flexDirection: "column" }}>
-                {item.articles.map((article, index) => (
-                  <Link
-                    href={`/content/${article.id}_${article.title
-                      .split(" ")
-                      .join("-")}`}
-                    key={index}
-                  >
-                    <Typography variant="p">{article.title}</Typography>
-                  </Link>
-                ))}
-              </List>
-            </Box>
-          ))}
+          <Grid container>
+            {categoriesWithArticles.map((item, index) => (
+              <Grid item md={3} lg={4} key={index}>
+                <Box key={index} padding="0 1rem ">
+                  <Typography variant="h6" color="#003C46" fontWeight="700">
+                    {item.name}
+                  </Typography>
+                  <List sx={{ display: "flex", flexDirection: "column" }}>
+                    <Box
+                      sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        height: "20rem",
+                      }}
+                    >
+                      {item.articles.slice(0, 7).map((article, index) => (
+                        <Link
+                          href={`/content/${article.id}_${article.title
+                            .split(" ")
+                            .join("-")}`}
+                          key={index}
+                        >
+                          <Typography
+                            variant="p"
+                            fontSize={"0.95rem"}
+                            lineHeight={"1.5 !important"}
+                            fontWeight={400}
+                            color="rgba(0, 109, 186, 1)"
+                            my={"1rem"}
+                          >
+                            {article.title}
+                          </Typography>
+                        </Link>
+                      ))}
+                      {item.articles.length !== 0 && (
+                        <Link href="/" style={{ margin: "2rem 0" }}>
+                          <Typography
+                            variant="p"
+                            fontSize={"0.95rem"}
+                            lineHeight={"1.5 !important"}
+                            fontWeight={600}
+                            color="rgba(0, 109, 186, 1)"
+                          >
+                            View More on {item.name} →
+                          </Typography>
+                        </Link>
+                      )}
+                    </Box>
+                  </List>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
         </Box>
       </Box>
-    </Container>
+    </Box>
   );
 };
 

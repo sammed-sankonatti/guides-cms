@@ -16,31 +16,35 @@ import {
   Box,
 } from "@mui/material";
 import { useRouter } from "next/navigation";
+import SearchBreadcrumbs from "../breadcrumbs/SearchBreadcrumbs";
+import ResultsBreadcrumbs from "../breadcrumbs/ResultsBreadcrumbs";
 
 const generateSlug = (id, slug) => {
   return `/content/${id}_${slug}`;
 };
 
+const formatTimestamp = (isoString) => {
+  const date = new Date(isoString);
+  return date
+    .toLocaleString("en-GB", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false,
+    })
+    .replace(",", " at");
+};
+
+const timestamp = "2025-03-19T12:03:01.998";
+console.log(formatTimestamp(timestamp)); // Output: "19/03/2025 at 12:03"
+
 const SearchResults = ({ searchResults, query }) => {
   const router = useRouter();
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "row", p: 4 }}>
-      {/* <Box sx={{ width: 250, p: 1, borderRadius: 2 }}>
-        <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-          Type
-        </Typography>
-        <Chip
-          label="All types"
-          variant="outlined"
-          sx={{ width: "100%", mt: 1 }}
-        />
-        <Chip
-          label="Articles"
-          variant="outlined"
-          sx={{ width: "100%", mt: 1 }}
-        />
-      </Box> */}
+    <Box sx={{ display: "flex", flexDirection: "row", p: 2 }}>
       <Box sx={{ flex: 1, maxWidth: "800px", mx: "auto" }}>
         <Typography variant="h4" sx={{ fontWeight: "bold", mb: 2 }}>
           Search results
@@ -65,9 +69,15 @@ const SearchResults = ({ searchResults, query }) => {
                 >
                   {result.title}
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
+                <ResultsBreadcrumbs
+                  items={[
+                    { label: result.guide_name, href: "/" },
+                    { label: result.category_name, href: "/" }, // Current page (non-clickable)
+                  ]}
+                />
+                {/* <Typography variant="body2" color="text.secondary">
                   {result.keywords}
-                </Typography>
+                </Typography> */}
                 <Typography variant="body1">
                   {/* {highlightQuery(result.description, query)} */}
                   {result.description}
@@ -75,7 +85,7 @@ const SearchResults = ({ searchResults, query }) => {
                 <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
                   <Chip
                     icon={<CalendarTodayIcon fontSize="small" />}
-                    label={result.timestamp}
+                    label={formatTimestamp(result.timestamp)}
                     size="small"
                     sx={{ mr: 1 }}
                   />

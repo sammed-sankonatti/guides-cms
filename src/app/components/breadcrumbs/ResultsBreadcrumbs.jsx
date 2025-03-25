@@ -11,17 +11,17 @@ const ResultsBreadcrumbs = ({ items }) => {
         aria-label="breadcrumb"
         separator=">"
         sx={{
-          mt: "0.5rem",
+          mt: "0rem",
           "& .MuiBreadcrumbs-separator": {
-            mx: 0.5,
+            mx: 0.8,
           },
           "& a": {
             textDecoration: "none",
-            color: "#052226",
+            color: "#6b7280",
             fontFamily: "Open Sans, Open Sans, sans-serif",
             fontWeight: 400,
             fontStyle: "normal",
-            fontSize: "0.98rem",
+            fontSize: "1rem",
             transition: "color 0.2s ease-in-out",
             p: 0,
             "&:hover": { color: "#052226" },
@@ -35,7 +35,7 @@ const ResultsBreadcrumbs = ({ items }) => {
       >
         {items.map((item, index) => (
           <Link key={index} href={item.href}>
-            {item.label}
+            <Typography variant="subtitle2" fontWeight={500}>{item.label}</Typography>
           </Link>
         ))}
       </Breadcrumbs>
