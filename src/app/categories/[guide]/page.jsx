@@ -29,8 +29,6 @@ const getArticles = async (guideId, categoryId) => {
   const res = await axios.get(
     `https://cms.drillbitplagiarismcheck.com/hr/cms/documents/${guideId}/${categoryId}`
   );
-  console.log("response = ", res.data);
-
   return res.data;
 };
 
@@ -50,8 +48,6 @@ const page = async ({ params }) => {
     })
   );
 
-  console.log("categoriesWithArticles = ", categoriesWithArticles);
-
   return (
     <Box sx={{ px: 6, py: 3, display: "flex" }}>
       <Box>
@@ -59,20 +55,30 @@ const page = async ({ params }) => {
         <Box justifyContent="center" display={"flex"}>
           <Grid container>
             {categoriesWithArticles.map((item, index) => (
-              <Grid item md={3} lg={4} key={index}>
-                <Box key={index} padding="0 1rem ">
-                  <Typography variant="h6" color="#003C46" fontWeight="700">
-                    {item.name}
-                  </Typography>
-                  <List sx={{ display: "flex", flexDirection: "column" }}>
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        height: "20rem",
-                      }}
-                    >
-                      {item.articles.slice(0, 7).map((article, index) => (
+              <Grid
+                item
+                md={3}
+                lg={4}
+                sm={12}
+                key={index}
+                sx={{
+                  width: "100%",
+                  minWidth: "400px",
+                }}
+              >
+                <Card
+                  sx={{
+                    padding: 2,
+                    boxShadow: "none",
+                    // border: "1px solid #ddd",
+                  }}
+                >
+                  <CardContent>
+                    <Typography variant="h6" color="#003C46" fontWeight="700">
+                      {item.name}
+                    </Typography>
+                    <Box display={"flex"} flexDirection={"column"}>
+                      {item.articles.slice(0, 8).map((article, index) => (
                         <Link
                           href={`/content/${article.id}_${article.title
                             .split(" ")
@@ -92,7 +98,7 @@ const page = async ({ params }) => {
                         </Link>
                       ))}
                       {item.articles.length !== 0 && (
-                        <Link href="/" style={{ margin: "2rem 0" }}>
+                        <Link href="/" style={{ margin: "1rem 0" }}>
                           <Typography
                             variant="p"
                             fontSize={"0.95rem"}
@@ -105,8 +111,8 @@ const page = async ({ params }) => {
                         </Link>
                       )}
                     </Box>
-                  </List>
-                </Box>
+                  </CardContent>
+                </Card>
               </Grid>
             ))}
           </Grid>

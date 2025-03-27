@@ -58,16 +58,26 @@ const SearchResults = ({ searchResults, query }) => {
                 }
                 sx={{ py: 1, px: 3 }}
               >
-                <Typography
+                {/* <Typography
                   variant="h6"
                   fontWeight="bold"
-                  color="#1a11b8"
+                  color="rgba(0, 109, 186, 1)"
                   fontFamily="DM Sans, sans-serif"
                   fontStyle={"normal"}
                   sx={{
                     cursor: "pointer",
                     "&:hover": { color: "#150e95" },
                   }}
+                >
+                  {result.title}
+                </Typography> */}
+                <Typography
+                  variant="p"
+                  fontSize={"1.2rem"}
+                  lineHeight={"1.5 !important"}
+                  fontWeight={600}
+                  color="rgba(0, 109, 186, 1)"
+                  sx={{ cursor: "pointer" }}
                 >
                   {result.title}
                 </Typography>
@@ -80,8 +90,18 @@ const SearchResults = ({ searchResults, query }) => {
                 {/* <Typography variant="body2" color="text.secondary">
                   {result.keywords}
                 </Typography> */}
-                <Typography variant="body1">
-                  {/* {highlightQuery(result.description, query)} */}
+                {/* <Typography variant="body1"> */}
+                {/* {highlightQuery(result.description, query)} */}
+                {/* {result.description} */}
+                {/* </Typography> */}
+                <Typography
+                  variant="p"
+                  fontSize={"0.9rem"}
+                  lineHeight={"1.2 !important"}
+                  fontWeight={400}
+                  color="#000"
+                  my={"1rem"}
+                >
                   {result.description}
                 </Typography>
                 <Box sx={{ display: "flex", alignItems: "center", mt: 1 }}>
