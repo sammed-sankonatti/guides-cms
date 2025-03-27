@@ -111,6 +111,9 @@ const page = () => {
         />
       </Box>
       {/* <UserGuides /> */}
+      <Container>
+        <h2> Some changes made and deployed</h2>
+      </Container>
       <Box
         sx={{
           // maxWidth: "600px",
